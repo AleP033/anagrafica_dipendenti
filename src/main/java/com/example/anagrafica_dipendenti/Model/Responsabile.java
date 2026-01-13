@@ -1,8 +1,10 @@
 package com.example.anagrafica_dipendenti.Model;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,8 +23,9 @@ public class Responsabile {
     private String dataInizio;
     private String dataFine;
 
+    @JsonIgnore // ignora le proprietà della serializzazione/deserializzazione
     @ManyToMany(mappedBy= "responsabili")
-    private Set<Dipendente> dipendenti;
+    private Set<Dipendente> dipendenti = new HashSet<>();
 
 
     // getters and setters

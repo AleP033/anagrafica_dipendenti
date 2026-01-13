@@ -1,7 +1,10 @@
 package com.example.anagrafica_dipendenti.Model;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+
 
 import jakarta.persistence.*;
 
@@ -35,7 +38,7 @@ public class Dipendente{
     inverseJoinColumns = @JoinColumn(name = "responsabile_id")
 )
 // SET evita i duplicati
-  private Set<Responsabile> responsabili;
+  private Set<Responsabile> responsabili = new HashSet<>();
 
   // getters and setters
   public Long getId() {

@@ -26,11 +26,11 @@ public class ResponsabileService {
     }
     // Trovo tutti i responsabili
     public List<Responsabile> findAll(){
-        return responsabileRepository.save(null);
+        return responsabileRepository.findAll();
     }
     // Trovo un responsabile per Id
-    public List<Responsabile> findById(Long id){
-        return (List<Responsabile>) responsabileRepository.findById(id)
+    public Responsabile findById(Long id){
+        return (Responsabile) responsabileRepository.findById(id)
         .orElseThrow(() -> new RuntimeException("Responsabile non trovato"));
     }
     // Associo un dipendente ad un responsabile

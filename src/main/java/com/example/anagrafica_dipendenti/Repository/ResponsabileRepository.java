@@ -9,6 +9,7 @@ import com.example.anagrafica_dipendenti.Model.Responsabile;
 
 @Repository
 public interface ResponsabileRepository extends JpaRepository<Responsabile,Long> {
-    List<Responsabile> findByDipendente_Id(Long dipendente_Id);
+    List<Responsabile> findByDipendenti_Id(Long dipendenteId);
+    Responsabile findByCommesse_id(Long commessaId);
     
 }

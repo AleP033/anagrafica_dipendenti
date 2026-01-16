@@ -85,6 +85,15 @@ public class Commessa {
     public void setDipendenti(Set<Dipendente> dipendenti) {
         this.dipendenti = dipendenti;
     }
+
+    public Responsabile getResponsabile() {
+        return responsabile;
+    }
+
+    public void setResponsabile(Responsabile responsabile) {
+        this.responsabile = responsabile;
+    }
+    
    
     
 

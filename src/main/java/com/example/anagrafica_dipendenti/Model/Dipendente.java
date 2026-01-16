@@ -82,6 +82,24 @@ public class Dipendente{
 public void setPassword(String password) {
     this.password = password;
 }
+public List<Contratto> getContratti() {
+  return contratti;
+}
+public void setContratti(List<Contratto> contratti) {
+  this.contratti = contratti;
+}
+public Set<Responsabile> getResponsabili() {
+  return responsabili;
+}
+public void setResponsabili(Set<Responsabile> responsabili) {
+  this.responsabili = responsabili;
+}
+public Set<Commessa> getCommesse() {
+  return commesse;
+}
+public void setCommesse(Set<Commessa> commesse) {
+  this.commesse = commesse;
+}
 
  
   

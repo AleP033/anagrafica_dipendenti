@@ -36,9 +36,20 @@ public class Dipendente{
     joinColumns = @JoinColumn(name = "dipendente_id"),
     // FOREIGN KEY dell'altra classe
     inverseJoinColumns = @JoinColumn(name = "responsabile_id")
+
 )
 // SET evita i duplicati
   private Set<Responsabile> responsabili = new HashSet<>();
+
+  @ManyToMany
+  @JoinTable(
+        name = "dipendente_commessa",
+        joinColumns = @JoinColumn(name = "dipendente_id"),
+        inverseJoinColumns = @JoinColumn(name = "commessa_id")
+
+    )
+    private Set<Commessa> commesse = new HashSet<>();
+
 
   // getters and setters
   public Long getId() {

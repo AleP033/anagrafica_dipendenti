@@ -1,5 +1,6 @@
 package com.example.anagrafica_dipendenti.Model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -10,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 
 
 @Entity
@@ -26,6 +28,9 @@ public class Responsabile {
     @JsonIgnore // ignora le proprietà della serializzazione/deserializzazione
     @ManyToMany(mappedBy= "responsabili")
     private Set<Dipendente> dipendenti = new HashSet<>();
+
+    @OneToMany(mappedBy = "responsabile")
+    private List<Commessa> commesse = new ArrayList<>();
 
 
     // getters and setters

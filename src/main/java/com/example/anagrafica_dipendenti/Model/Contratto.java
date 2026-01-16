@@ -18,7 +18,7 @@ public class Contratto {
 
     @ManyToOne
     @JoinColumn(name = "dipendente_id")
-    private Dipendente dipendente;
+    private Dipendente dipendenti;
 
     // getters and setters
     public Long getId(){
@@ -45,11 +45,11 @@ public class Contratto {
     public void setData_fine(String Data_fine){
         this.dataFine = Data_fine;
     }
-    public Dipendente getDipendente(){
-        return dipendente;
+    public Dipendente getDipendenti(){
+        return dipendenti;
     }
-    public void setDipendente(Dipendente dipendente){
-        this.dipendente = dipendente;
+    public void setDipendente(Dipendente dipendenti){
+        this.dipendenti = dipendenti;
     }
   
     

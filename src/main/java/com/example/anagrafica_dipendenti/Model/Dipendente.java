@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 
@@ -26,8 +26,10 @@ public class Dipendente{
 
   @OneToMany
   @JoinColumn(name = "contratto_id")
+  @JsonIgnore
   private List<Contratto> contratti;
 
+  
   @ManyToMany
   // ponte tra due tabelle
 @JoinTable(
@@ -39,6 +41,7 @@ public class Dipendente{
 
 )
 // SET evita i duplicati
+@JsonIgnore
   private Set<Responsabile> responsabili = new HashSet<>();
 
   @ManyToMany
@@ -48,6 +51,7 @@ public class Dipendente{
         inverseJoinColumns = @JoinColumn(name = "commessa_id")
 
     )
+    @JsonIgnore
     private Set<Commessa> commesse = new HashSet<>();
 
 

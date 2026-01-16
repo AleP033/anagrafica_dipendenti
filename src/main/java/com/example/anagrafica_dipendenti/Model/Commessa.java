@@ -3,6 +3,8 @@ package com.example.anagrafica_dipendenti.Model;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,10 +26,12 @@ public class Commessa {
     private Float importo;
 
     @ManyToMany(mappedBy = "commesse")
+    @JsonIgnore
     private Set<Dipendente> dipendenti = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "responsabile_id")
+    @JsonIgnore
     private Responsabile responsabile;
 
     public Long getId() {

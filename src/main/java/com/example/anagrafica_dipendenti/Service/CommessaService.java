@@ -29,7 +29,7 @@ public class CommessaService {
     }
 
     //POST
-    public Commessa create(Commessa c) {
+    public Commessa insert(Commessa c) {
         return commessaRepository.save(c);
     }
 
@@ -72,4 +72,14 @@ public class CommessaService {
         c.setResponsabile(r);
         return commessaRepository.save(c);
     }
+
+    public List<Commessa> findByDipendente(Long dipendente_Id) {
+        return commessaRepository.findByDipendenti_Id(dipendente_Id);
+    }
+
+
+    public List<Commessa> findByResponsabile(Long responsabile_Id) {
+        return commessaRepository.findByResponsabile_id(responsabile_Id);
+    }
+
 }

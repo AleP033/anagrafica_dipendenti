@@ -25,11 +25,13 @@ public class Responsabile {
     private String dataInizio;
     private String dataFine;
 
-    @JsonIgnore // ignora le proprietà della serializzazione/deserializzazione
+   
     @ManyToMany(mappedBy= "responsabili")
+    @JsonIgnore
     private Set<Dipendente> dipendenti = new HashSet<>();
 
     @OneToMany(mappedBy = "responsabile")
+     @JsonIgnore
     private List<Commessa> commesse = new ArrayList<>();
 
 
@@ -70,11 +72,12 @@ public class Responsabile {
   public void setData_fine(String Data_fine){
     this.dataFine = Data_fine;
   }
-  public List<Dipendente> getDipendenti(){
-    return (List<Dipendente>) dipendenti;
-  }
-  public void setDipendente(List<Dipendente> dipedenti){
+ public Set<Dipendente> getDipendenti(){
+    return dipendenti;
+}
+  public void setDipendenti(Set<Dipendente> dipendenti){
     this.dipendenti = dipendenti;
-  }
+}
+
     
 }

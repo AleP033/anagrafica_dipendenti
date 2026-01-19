@@ -1,6 +1,8 @@
 package com.example.anagrafica_dipendenti.Model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -12,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Commessa {
@@ -33,6 +36,10 @@ public class Commessa {
     @JoinColumn(name = "responsabile_id")
     @JsonIgnore
     private Responsabile responsabile;
+
+    @OneToMany(mappedBy = "commessa")
+    @JsonIgnore
+    private List<Timesheet> timesheets = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -97,6 +104,15 @@ public class Commessa {
     public void setResponsabile(Responsabile responsabile) {
         this.responsabile = responsabile;
     }
+
+    public List<Timesheet> getTimesheets() {
+        return timesheets;
+    }
+
+    public void setTimesheets(List<Timesheet> timesheets) {
+        this.timesheets = timesheets;
+    }
+    
     
    
     

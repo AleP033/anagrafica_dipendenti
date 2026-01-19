@@ -1,5 +1,6 @@
 package com.example.anagrafica_dipendenti.Model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -54,6 +55,10 @@ public class Dipendente{
     @JsonIgnore
     private Set<Commessa> commesse = new HashSet<>();
 
+  @OneToMany(mappedBy = "dipendente")
+  @JsonIgnore
+  private List<Timesheet> timesheets = new ArrayList<>();
+
 
   // getters and setters
   public Long getId() {
@@ -104,6 +109,13 @@ public Set<Commessa> getCommesse() {
 public void setCommesse(Set<Commessa> commesse) {
   this.commesse = commesse;
 }
+public List<Timesheet> getTimesheets() {
+  return timesheets;
+}
+public void setTimesheets(List<Timesheet> timesheets) {
+  this.timesheets = timesheets;
+}
+
 
  
   

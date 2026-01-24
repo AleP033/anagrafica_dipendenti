@@ -4,10 +4,10 @@ import { Dipendente } from "../Dipendente/dipendente";
 export class Timesheet {
 
     id? : number;
-    oreLavorate? : number;
-    data? : string;
-    tipologia? : string;
+    oreLav? : number;
+    dat? : string;
+    tip? : string;
 
-    dipendente? : Dipendente;
-    commessa? : Commessa
+    dipRIF? : number;
+    comRIF? : number;
 }

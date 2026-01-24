@@ -1,8 +1,7 @@
 package com.example.anagrafica_dipendenti.Web;
 
 import java.util.List;
-import java.util.Optional;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.anagrafica_dipendenti.Dto.DipendenteDTO;
 import com.example.anagrafica_dipendenti.Dto.LoginRequest;
-import com.example.anagrafica_dipendenti.Model.Dipendente;
 import com.example.anagrafica_dipendenti.Service.DipendenteService;
 
 @RestController
@@ -24,27 +23,30 @@ public class DipendenteController {
     }
 
     // Ritorna una lista con tutti i dipendenti
-    @GetMapping
-    public List<Dipendente> getAll() {
-        return dipendenteService.findAll();
-    } 
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping 
+    public List<DipendenteDTO> getAll() { 
+         return dipendenteService.getAll(); 
+}
 
     // Inserimento del dipendente
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping
-    public Long insert(@RequestBody Dipendente d){
+    public DipendenteDTO insert(@RequestBody DipendenteDTO d){
         return dipendenteService.insert(d);
     }
 
-    //Mappa richieste del tipo dipendenti/1,opzionale
+    //Mappa richieste del tipo dipendenti/1
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/{id}")
-    public Optional<Dipendente> getById(@PathVariable Long id){
-        return dipendenteService.findById(id);
+    public DipendenteDTO getById(@PathVariable Long id) { 
+          return dipendenteService.getById(id); 
+}
 
-    }
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/doLogin")
-public Dipendente login(@RequestBody LoginRequest request) {
-    return dipendenteService.login(request.getEmail(), request.getPassword());
+    public DipendenteDTO login(@RequestBody LoginRequest request) {
+           return dipendenteService.login(request.getEmail(), request.getPassword());
 }
 
 

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.anagrafica_dipendenti.Model.Contratto;
+import com.example.anagrafica_dipendenti.Dto.ContrattoDTO;
 import com.example.anagrafica_dipendenti.Service.ContrattoService;
 
 @RestController
@@ -21,16 +21,16 @@ public class ContrattoController {
         this.contrattoService = contrattoService;
     }
 
-    // Crea il contratto per il dipendente,restituisce il contratto in JSON
-    @PostMapping("/dipendente/{dipendenteId}")
-    public Contratto createForDipendente(@PathVariable Long dipendenteId, @RequestBody Contratto c){
-        return contrattoService.createForDipendente(dipendenteId, c);
+    // Crea il contrattoDTO
+    @PostMapping
+    public ContrattoDTO create(@RequestBody ContrattoDTO dto){
+        return contrattoService.create(dto);
     }
 
     // Restituisce una lista dei contratti associati ad un dipendenteId
     @GetMapping("/dipendente/{dipendenteId}")
-    public List<Contratto> getByDipendente(@PathVariable Long dipendenteId) {
-        return contrattoService.findByDipendente(dipendenteId);
+    public List<ContrattoDTO> getByDipendente(@PathVariable Long dipendenteId) {
+        return contrattoService.findByDipendenti(dipendenteId);
     }
     
 }

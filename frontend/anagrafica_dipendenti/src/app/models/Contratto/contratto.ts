@@ -3,9 +3,9 @@ import { Dipendente } from "../Dipendente/dipendente";
 export class Contratto {
 
     id?: number;
-    tipo?: string;
-    dataInizio? : string;
-    dataFine? : string;
+    tip?: string;
+    datIni? : string;
+    datFin? : string;
 
-    dipendente? : Dipendente[]
+    dipRIF? : Dipendente[]
 }

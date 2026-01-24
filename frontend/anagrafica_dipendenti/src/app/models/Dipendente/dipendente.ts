@@ -1,20 +1,14 @@
-import { Responsabile } from "../Responsabile/responsabile";
-import { Contratto } from "../Contratto/contratto";
-import { Commessa } from "../Commessa/commessa";
-import { Timesheet } from "../Timesheet/timesheet";
-
 export class Dipendente {
 
     id?: number;
-    nome?: string;
-    cognome?: string;
+    nom?: string;
+    cog?: string;
     email?: string;
+    password? : string;
 
-    responsabile? : Responsabile;
-    contratto? : Contratto;
-    commesse? : Commessa[];
-    timesheets? : Timesheet[]
+    respRIF? : number[];
+    contrRIF?: number[];
+    comRIF? : number[];
+    timRIF? : number[];
 
 }
-
-

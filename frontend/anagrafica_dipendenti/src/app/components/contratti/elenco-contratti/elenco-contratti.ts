@@ -1,11 +1,28 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { Contratto } from '../../../models/Contratto/contratto';
+import { ContrattoService } from '../../../services/Contratto/contratto.service';
 
 @Component({
   selector: 'app-elenco-contratti',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './elenco-contratti.html',
   styleUrl: './elenco-contratti.css',
 })
-export class ElencoContratti {
+export class ElencoContratti implements OnInit {
 
+  contratti: Contratto[] = [];
+  
+    constructor(private conService: ContrattoService) {}
+  
+   ngOnInit(): void {
+
+   this.conService.getContrattiByDipendente(1).subscribe({
+    next: (data) => this.contratti = data,
+    error: (err) => console.error(err)
+  });
 }
+
+    }
+

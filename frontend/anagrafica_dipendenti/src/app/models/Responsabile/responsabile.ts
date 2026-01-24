@@ -4,12 +4,12 @@ import { Commessa } from "../Commessa/commessa";
 export class Responsabile {
 
     id? : number;
-    nome? : string;
-    cognome? : string;
+    nom? : string;
+    cog? : string;
     email? : string;
-    dataInizio?: string;
-    dataFine? : string;
+    datIni?: string;
+    datFin? : string;
 
-    dipendente? : Dipendente[];
-    commessa? : Commessa[]
+   dipRIF? : number[];
+   comRIF? : number[];
 }

@@ -1,5 +1,5 @@
-<table class="table table-bordered border-primary">
-  <thead>
+<table class="table table-bordered border-primary table-striped table-hover mt-3">
+   <thead class="table-primary">
     <tr>
       <th scope="col">Id</th>
       <th scope="col">Ore Lavorate</th>
@@ -10,15 +10,14 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-  <th scope="row">1</th>
-  <td>8</td>
-  <td>01-02-2026</td>
-  <td>Ordinario</td>
-  <td>Valeria Verdi</td>
-  <td>realizazzione app spring boot</td>
-  
-</tr>
+   <tr *ngFor="let t of timesheets">
+      <th scope="row">{{ t.id }}</th>
+      <td>{{ t.oreLav }}</td>
+      <td>{{ t.dat }}</td>
+      <td>{{ t.tip }}</td>
+      <td>{{ t.dipRIF}}</td> <!-- ho tolto il ? perchè mi dava degli errori sul cmd-->
+      <td>{{ t.comRIF}}</td>
+    </tr>
 
   </tbody>
 </table>

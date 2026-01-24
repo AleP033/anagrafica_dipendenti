@@ -28,7 +28,7 @@ public class Dipendente{
   @OneToMany
   @JoinColumn(name = "contratto_id")
   @JsonIgnore
-  private List<Contratto> contratti;
+  private List<Contratto> contratti = new ArrayList<>();
 
   
   @ManyToMany

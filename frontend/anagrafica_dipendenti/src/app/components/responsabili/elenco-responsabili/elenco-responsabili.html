@@ -1,26 +1,26 @@
-<table class="table table-bordered border-primary">
-  <thead>
+<table class="table table-bordered border-primary table-striped table-hover mt-3">
+  <thead class="table-primary">
     <tr>
-      <th scope="col">Id</th>
+      <th scope="col">ID</th>
       <th scope="col">Nome</th>
       <th scope="col">Cognome</th>
       <th scope="col">Email</th>
-      <th scope="col">Data Inizio</th>
-      <th scope="col">Data Fine</th>
-      <th scope="col">Dipendente</th>
-      <th scope="col">Commessa</th>
+      <th scope="col">Data inizio</th>
+      <th scope="col">Data fine</th>
+      <th scope="col">Dipendenti</th>
+      <th scope="col">Commesse</th>
     </tr>
   </thead>
   <tbody>
-      <tr>
-      <th scope="row">1</th>
-      <td>Simone</td>
-      <td>Rossi</td>
-      <td>simross@exp.com</td>
-      <td>10-01-2026</td>
-      <td>10-06-2026</td>
-      <td>Valeria Verdi</td>
-      <td>Progetto 1</td>
+    <tr *ngFor="let r of responsabili">
+      <th scope="row">{{ r.id }}</th>
+      <td>{{ r.nom }}</td>
+      <td>{{ r.cog }}</td>
+      <td>{{ r.email }}</td>
+      <td>{{ r.datIni }}</td>
+      <td>{{ r.datFin }}</td>
+      <td>{{ r.dipRIF?.length }}</td>
+      <td>{{ r.comRIF?.length }}</td>
     </tr>
   </tbody>
 </table>

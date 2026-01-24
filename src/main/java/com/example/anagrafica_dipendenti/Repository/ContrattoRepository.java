@@ -9,6 +9,6 @@ import com.example.anagrafica_dipendenti.Model.Contratto;
 
 @Repository
 public interface ContrattoRepository extends JpaRepository<Contratto,Long> {
-    List<Contratto> findByDipendente_Id(Long dipendente_Id);
+    List<Contratto> findByDipendenti_Id(Long dipendente_Id);
     
 }

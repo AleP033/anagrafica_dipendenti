@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.anagrafica_dipendenti.Dto.CommessaDTO;
 import com.example.anagrafica_dipendenti.Model.Commessa;
 import com.example.anagrafica_dipendenti.Model.Dipendente;
 import com.example.anagrafica_dipendenti.Model.Responsabile;
@@ -29,20 +30,36 @@ public class CommessaService {
     }
 
     //POST
-    public Commessa insert(Commessa c) {
-        return commessaRepository.save(c);
-    }
+     public CommessaDTO insert(CommessaDTO dto) {
+
+    Commessa c = new Commessa();
+    c.setTitolo(dto.getTit());
+    c.setDescrizione(dto.getDes());
+    c.setDataInizio(dto.getDatIni());
+    c.setDataFine(dto.getDatFin());
+    c.setImporto(dto.getImp());
+    
+
+    Commessa saved = commessaRepository.save(c);
+
+    return toDTO(saved);
+}
 
     //GET tutti
-    public List<Commessa> findAll() {
-        return commessaRepository.findAll();
-    }
+       public List<CommessaDTO> getAll() {
+    return commessaRepository.findAll()
+            .stream()
+            .map(this::toDTO)
+            .toList();
+}
 
     //GET per id
-    public Commessa findById(Long id) {
-        return commessaRepository.findById(id)
-        .orElseThrow(() -> new RuntimeException("Commessa non trovata"));
-    }
+   public CommessaDTO getById(Long id) { 
+    Commessa c = commessaRepository.findById(id)
+    .orElseThrow(() -> new RuntimeException("Commessa non trovata"));
+
+    return toDTO(c);
+}
 
     //Associo un dipendente ad una commessa
     public Commessa addDipendente(Long dipendenteId, Long commessaId) {
@@ -73,13 +90,52 @@ public class CommessaService {
         return commessaRepository.save(c);
     }
 
-    public List<Commessa> findByDipendente(Long dipendente_Id) {
-        return commessaRepository.findByDipendenti_Id(dipendente_Id);
+    // converto da entity a DTO perchè non funzionava il find
+    public List<CommessaDTO> findByDipendente(Long dipendente_Id) {
+        return commessaRepository.findByDipendenti_Id(dipendente_Id)
+        .stream()
+        .map(this::toDTO)
+        .toList();
     }
 
 
-    public List<Commessa> findByResponsabile(Long responsabile_Id) {
-        return commessaRepository.findByResponsabile_id(responsabile_Id);
+    public List<CommessaDTO> findByResponsabile(Long responsabile_Id) {
+        return commessaRepository.findByResponsabile_Id(responsabile_Id)
+        .stream()
+        .map(this::toDTO)
+        .toList();
+    }
+
+    // Passo dall'entity al DTO
+    private CommessaDTO toDTO(Commessa c) {
+
+        CommessaDTO dto = new CommessaDTO();
+
+        dto.setId(c.getId());
+        dto.setTit(c.getTitolo());
+        dto.setDes(c.getDescrizione());
+        dto.setDatIni(c.getDataInizio());
+        dto.setDatFin(c.getDataFine());
+        dto.setImp(c.getImporto());
+       
+        if (c.getResponsabile() != null) { 
+            dto.setRespRIF(c.getResponsabile().getId()); 
+        }
+
+        // LISTE DI ID
+        dto.setDipRIF(
+            c.getDipendenti().stream()
+                .map(d -> d.getId())
+                .toList()
+        );
+        
+        dto.setTimRIF(
+            c.getTimesheets().stream()
+                .map(t -> t.getId())
+                .toList()
+        );
+
+        return dto;
     }
 
 }

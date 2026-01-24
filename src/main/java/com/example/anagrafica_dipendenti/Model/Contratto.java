@@ -33,17 +33,17 @@ public class Contratto {
     public void setTipo(String Tipo){
         this.tipo = Tipo;
     }
-    public String getData_inizio(){
+    public String getDataInizio(){
         return dataInizio;
     }
-    public void setData_inizio(String Data_inizio){
-        this.dataInizio = Data_inizio;
+    public void setDataInizio(String DataInizio){
+        this.dataInizio = DataInizio;
     }
-    public String getData_fine(){
+    public String getDataFine(){
         return dataFine;
     }
-    public void setData_fine(String Data_fine){
-        this.dataFine = Data_fine;
+    public void setDataFine(String DataFine){
+        this.dataFine = DataFine;
     }
     public Dipendente getDipendenti(){
         return dipendenti;

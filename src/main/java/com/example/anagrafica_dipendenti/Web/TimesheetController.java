@@ -2,6 +2,7 @@ package com.example.anagrafica_dipendenti.Web;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.anagrafica_dipendenti.Model.Timesheet;
+import com.example.anagrafica_dipendenti.Dto.TimesheetDTO;
 import com.example.anagrafica_dipendenti.Service.TimesheetService;
 
 @RestController
@@ -21,32 +22,37 @@ public class TimesheetController {
     }
 
     //Ritorna una lista con tutti i timesheet
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping
-    public List<Timesheet> getAll() {
-        return timesheetService.findAll();
+    public List<TimesheetDTO> getAll() {
+        return timesheetService.getAll();
     }
 
     //Ricerca per Id
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/{id}")
-    public Timesheet getById(Long timesheetId) {
-        return timesheetService.findById(timesheetId);
+    public TimesheetDTO getById(Long timesheetId) {
+        return timesheetService.getById(timesheetId);
     }
 
     //POST per inserire
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping
-    public Timesheet insert(@RequestBody Timesheet t) {
-        return timesheetService.insert(t);
+    public TimesheetDTO insert(@RequestBody TimesheetDTO t) {
+        return timesheetService.create(t);
     }
 
     //POST per associare un dipendente
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/{timesheetId}/dipendente/{dipendenteId}")
-    public Timesheet addDipendente(@PathVariable Long dipendenteId, @PathVariable Long timesheetId){
+    public TimesheetDTO addDipendente(@PathVariable Long dipendenteId, @PathVariable Long timesheetId){
         return timesheetService.addDipendente(dipendenteId, timesheetId);
     }
 
     //POST per associare una commessa
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/{timesheetId}/commessa/{commessaId}")
-    public Timesheet addCommessa(@PathVariable Long commessaId, @PathVariable Long timesheetId){
+    public TimesheetDTO addCommessa(@PathVariable Long commessaId, @PathVariable Long timesheetId){
         return timesheetService.addCommessa(commessaId, timesheetId);
     }
  

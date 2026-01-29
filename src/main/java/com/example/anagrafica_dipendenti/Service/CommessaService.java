@@ -46,8 +46,8 @@ public class CommessaService {
 }
 
     //GET tutti
-       public List<CommessaDTO> getAll() {
-    return commessaRepository.findAll()
+    public List<CommessaDTO> getAll() {
+     return commessaRepository.findAll()
             .stream()
             .map(this::toDTO)
             .toList();

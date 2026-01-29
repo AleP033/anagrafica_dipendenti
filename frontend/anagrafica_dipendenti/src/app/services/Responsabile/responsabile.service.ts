@@ -19,5 +19,9 @@ export class ResponsabileService {
   getResponsabileById(id: number): Observable<Responsabile> {
     return this.http.get<Responsabile>(`${this.apiUrl}/${id}`);
   }
+
+  getResponsabileByDipendente(id: number): Observable<Responsabile> {
+    return this.http.get<Responsabile>(`${this.apiUrl}/dipendente/${id}`);
+  }
   
 }

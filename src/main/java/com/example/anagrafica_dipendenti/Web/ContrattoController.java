@@ -2,6 +2,7 @@ package com.example.anagrafica_dipendenti.Web;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,10 +28,27 @@ public class ContrattoController {
         return contrattoService.create(dto);
     }
 
+     //Aggiungo un contratto al dipendente
+    @CrossOrigin(origins = "http://localhost:4200")
+   @PostMapping("/{contrattoId}/dipendente/{dipendenteId}")
+   public String addToDipendente(@PathVariable Long contrattoId, @PathVariable Long dipendenteId) {
+    contrattoService.addDipendente(dipendenteId, contrattoId);
+    return "Dipendente aggiunto al contratto";
+}
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping
+    public List<ContrattoDTO> getAll() {
+        return contrattoService.findAll();
+    }
+
+
     // Restituisce una lista dei contratti associati ad un dipendenteId
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/dipendente/{dipendenteId}")
     public List<ContrattoDTO> getByDipendente(@PathVariable Long dipendenteId) {
         return contrattoService.findByDipendenti(dipendenteId);
     }
     
+
 }

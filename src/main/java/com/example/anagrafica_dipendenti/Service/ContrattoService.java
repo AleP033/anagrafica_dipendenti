@@ -34,6 +34,30 @@ public class ContrattoService {
     Contratto saved = contrattoRepository.save(c); 
     return toDTO(saved); 
 }
+
+ //Associo un dipendente ad una commessa
+    public Contratto addDipendente(Long dipendenteId, Long contrattoId) {
+
+        Contratto c = contrattoRepository.findById(contrattoId)
+        .orElseThrow(() -> new RuntimeException("Commessa non trovata"));
+
+        Dipendente d = dipendenteRepository.findById(dipendenteId)
+        .orElseThrow(() -> new RuntimeException("Dipendente non trovato"));
+
+     
+        d.getContratti().add(c); // perchè il dipendente può avere più contratti
+        dipendenteRepository.save(d);
+
+        return c;
+    }
+
+    public List<ContrattoDTO> findAll() {
+    return contrattoRepository.findAll()
+            .stream()
+            .map(this::toDTO)
+            .toList();
+    }
+
    // READ: tutti i contratti di un dipendente 
    public List<ContrattoDTO> findByDipendenti(Long dipendenteId) {
      return contrattoRepository.findByDipendenti_Id(dipendenteId).stream()

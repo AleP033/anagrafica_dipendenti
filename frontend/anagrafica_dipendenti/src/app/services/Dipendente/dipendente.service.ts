@@ -18,6 +18,10 @@ export class DipendenteService {
   getDipendenteById(id: number): Observable<Dipendente> {
     return this.http.get<Dipendente>(`${this.apiUrl}/${id}`);
   }
+
+  getDipendenteByResponsabile(id: number): Observable<Dipendente> {
+    return this.http.get<Dipendente>(`${this.apiUrl}/responsabile/${id}`);
+  }
 }
 
 // ho usato Dipendente e non DipendenteDTO perchè sono la stessa cosa e non ho voluto ricreare 

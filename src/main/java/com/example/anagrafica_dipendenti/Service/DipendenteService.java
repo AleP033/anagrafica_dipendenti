@@ -85,6 +85,7 @@ private PasswordEncoder passwordEncoder;
         dto.setNom(d.getNome());
         dto.setCog(d.getCognome());
         dto.setEmail(d.getEmail());
+        dto.setPassword(d.getPassword());
 
         // LISTE DI ID
         dto.setRespRIF(

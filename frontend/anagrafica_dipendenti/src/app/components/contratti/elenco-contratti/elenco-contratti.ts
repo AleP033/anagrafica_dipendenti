@@ -16,13 +16,15 @@ export class ElencoContratti implements OnInit {
   
     constructor(private conService: ContrattoService) {}
   
-   ngOnInit(): void {
-
-   this.conService.getContrattiByDipendente(1).subscribe({
-    next: (data) => this.contratti = data,
-    error: (err) => console.error(err)
-  });
-}
-
+    ngOnInit(): void {
+    this.conService.getContratti().subscribe({
+      next: (data) => {
+        this.contratti = data;
+      },
+      error: (err) => {
+        console.error("Errore nel recupero dei contratti", err);
+      }
+    });
+  }
     }
 

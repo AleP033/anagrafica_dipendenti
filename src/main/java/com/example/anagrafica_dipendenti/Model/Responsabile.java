@@ -27,7 +27,6 @@ public class Responsabile {
 
    
     @ManyToMany(mappedBy= "responsabili")
-    @JsonIgnore
     private Set<Dipendente> dipendenti = new HashSet<>();
 
     @OneToMany(mappedBy = "responsabile")

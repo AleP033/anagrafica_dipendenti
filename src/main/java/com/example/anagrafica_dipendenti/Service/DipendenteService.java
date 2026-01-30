@@ -6,7 +6,9 @@ import java.util.List;
 
 import com.example.anagrafica_dipendenti.Dto.DipendenteDTO;
 import com.example.anagrafica_dipendenti.Model.Dipendente;
+import com.example.anagrafica_dipendenti.Model.Responsabile;
 import com.example.anagrafica_dipendenti.Repository.DipendenteRepository;
+import com.example.anagrafica_dipendenti.Repository.ResponsabileRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 
@@ -16,7 +18,9 @@ public class DipendenteService {
     
     private final DipendenteRepository dipendenteRepository;
 @Autowired
-private PasswordEncoder passwordEncoder; 
+private PasswordEncoder passwordEncoder;
+@Autowired
+private ResponsabileRepository responsabileRepository; 
 
 
 
@@ -34,12 +38,27 @@ private PasswordEncoder passwordEncoder;
     d.setNome(dto.getNom());
     d.setCognome(dto.getCog());
     d.setEmail(dto.getEmail());
-    d.setPassword(dto.getPassword());
+    d.setPassword(passwordEncoder.encode(dto.getPassword()));
     
 
     Dipendente saved = dipendenteRepository.save(d);
 
     return toDTO(saved);
+}
+
+public DipendenteDTO addResponsabile(Long dipendenteId, Long responsabileId) {
+
+    Dipendente d = dipendenteRepository.findById(dipendenteId)
+        .orElseThrow(() -> new RuntimeException("Dipendente non trovato"));
+
+    Responsabile r = responsabileRepository.findById(responsabileId)
+        .orElseThrow(() -> new RuntimeException("Responsabile non trovato"));
+
+    d.getResponsabili().add(r);
+
+    dipendenteRepository.save(d);
+
+    return toDTO(d);
 }
 
 

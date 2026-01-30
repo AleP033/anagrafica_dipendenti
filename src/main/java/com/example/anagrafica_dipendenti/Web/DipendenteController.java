@@ -36,6 +36,13 @@ public class DipendenteController {
         return dipendenteService.insert(d);
     }
 
+    //Aggiunge un responsabile
+    @PostMapping("/{dipendenteId}/responsabili/{responsabileId}")
+    public DipendenteDTO addResponsabile(@PathVariable Long dipendenteId,@PathVariable Long responsabileId) {
+    return dipendenteService.addResponsabile(dipendenteId, responsabileId);
+}
+
+
     //Mappa richieste del tipo dipendenti/1
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/{id}")

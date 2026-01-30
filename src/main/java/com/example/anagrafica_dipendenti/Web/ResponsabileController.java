@@ -47,6 +47,7 @@ public class ResponsabileController {
     @PostMapping("/{responsabileId}/dipendenti/{dipendenteId}")
     public void addDipendente(@PathVariable Long responsabileId, @PathVariable Long dipendenteId) {
         responsabileService.addDipendente(responsabileId, dipendenteId);
+    
     }
     
 }

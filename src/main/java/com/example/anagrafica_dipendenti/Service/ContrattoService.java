@@ -46,7 +46,9 @@ public class ContrattoService {
 
      
         d.getContratti().add(c); // perchè il dipendente può avere più contratti
+        c.setDipendente(d);
         dipendenteRepository.save(d);
+        contrattoRepository.save(c);
 
         return c;
     }

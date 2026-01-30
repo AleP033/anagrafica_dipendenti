@@ -42,8 +42,7 @@ public class Dipendente{
 
 )
 // SET evita i duplicati
-@JsonIgnore
-  private Set<Responsabile> responsabili = new HashSet<>();
+private Set<Responsabile> responsabili = new HashSet<>();
 
   @ManyToMany
   @JoinTable(

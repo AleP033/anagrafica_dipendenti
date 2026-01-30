@@ -12,4 +12,5 @@ public interface ResponsabileRepository extends JpaRepository<Responsabile,Long>
     List<Responsabile> findByDipendenti_Id(Long dipendenteId);
     Responsabile findByCommesse_id(Long commessaId);
     
+    
 }

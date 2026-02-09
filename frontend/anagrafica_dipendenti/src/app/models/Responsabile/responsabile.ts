@@ -4,11 +4,11 @@ import { Commessa } from "../Commessa/commessa";
 export class Responsabile {
 
     id? : number;
-    nom? : string;
-    cog? : string;
+    nome? : string;
+    cognome? : string;
     email? : string;
-    datIni?: string;
-    datFin? : string;
+    datInizio?: string;
+    datFine? : string;
 
    dipRIF? : number[];
    comRIF? : number[];

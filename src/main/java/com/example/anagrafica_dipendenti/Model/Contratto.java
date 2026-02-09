@@ -1,5 +1,7 @@
 package com.example.anagrafica_dipendenti.Model;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,8 +15,8 @@ public class Contratto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String tipo;
-    private String dataInizio;
-    private String dataFine;
+    private LocalDate dataInizio;
+    private LocalDate dataFine;
 
     @ManyToOne
     @JoinColumn(name = "dipendente_id")
@@ -33,16 +35,16 @@ public class Contratto {
     public void setTipo(String Tipo){
         this.tipo = Tipo;
     }
-    public String getDataInizio(){
+    public LocalDate getDataInizio(){
         return dataInizio;
     }
-    public void setDataInizio(String DataInizio){
+    public void setDataInizio(LocalDate DataInizio){
         this.dataInizio = DataInizio;
     }
-    public String getDataFine(){
+    public LocalDate getDataFine(){
         return dataFine;
     }
-    public void setDataFine(String DataFine){
+    public void setDataFine(LocalDate DataFine){
         this.dataFine = DataFine;
     }
     public Dipendente getDipendenti(){

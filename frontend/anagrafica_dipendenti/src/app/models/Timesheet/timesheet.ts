@@ -4,9 +4,9 @@ import { Dipendente } from "../Dipendente/dipendente";
 export class Timesheet {
 
     id? : number;
-    oreLav? : number;
+    oreLavorate? : number;
     dat? : string;
-    tip? : string;
+    tipologia? : string;
 
     dipRIF? : number;
     comRIF? : number;

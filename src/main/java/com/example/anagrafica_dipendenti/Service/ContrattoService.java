@@ -2,6 +2,7 @@ package com.example.anagrafica_dipendenti.Service;
 
 import java.util.List;
 
+
 import org.springframework.stereotype.Service;
 
 import com.example.anagrafica_dipendenti.Dto.ContrattoDTO;
@@ -22,10 +23,11 @@ public class ContrattoService {
     }
   // CREATE con DTO 
   public ContrattoDTO create(ContrattoDTO dto) { 
+    try {
     Contratto c = new Contratto(); 
-    c.setTipo(dto.getTip()); 
-    c.setDataInizio(dto.getDatIni()); 
-    c.setDataFine(dto.getDatFin()); 
+    c.setTipo(dto.getTipo()); 
+    c.setDataInizio(dto.getDatInizio()); 
+    c.setDataFine(dto.getDatFine()); 
     if (dto.getDipRIF() != null) { 
         Dipendente d = dipendenteRepository.findById(dto.getDipRIF()) 
         .orElseThrow(() -> new RuntimeException("Dipendente non trovato")); 
@@ -33,13 +35,16 @@ public class ContrattoService {
     } 
     Contratto saved = contrattoRepository.save(c); 
     return toDTO(saved); 
+     } catch (Exception e) {
+        throw new RuntimeException("Errore nell'inserimento del contratto");
+    }
 }
 
- //Associo un dipendente ad una commessa
+ //Associo un dipendente ad un contratto
     public Contratto addDipendente(Long dipendenteId, Long contrattoId) {
-
+        try {
         Contratto c = contrattoRepository.findById(contrattoId)
-        .orElseThrow(() -> new RuntimeException("Commessa non trovata"));
+        .orElseThrow(() -> new RuntimeException("Contratto non trovato"));
 
         Dipendente d = dipendenteRepository.findById(dipendenteId)
         .orElseThrow(() -> new RuntimeException("Dipendente non trovato"));
@@ -51,6 +56,9 @@ public class ContrattoService {
         contrattoRepository.save(c);
 
         return c;
+        } catch (Exception e) {
+            throw new RuntimeException("Errore durante l'associazione del dipendente al contratto", e);
+        }
     }
 
     public List<ContrattoDTO> findAll() {
@@ -68,15 +76,19 @@ public class ContrattoService {
     }
       // MAPPER ENTITY → DTO 
       private ContrattoDTO toDTO(Contratto c) { 
+        try {
         ContrattoDTO dto = new ContrattoDTO(); 
         dto.setId(c.getId()); 
-        dto.setTip(c.getTipo()); 
-        dto.setDatIni(c.getDataInizio()); 
-        dto.setDatFin(c.getDataFine()); 
+        dto.setTipo(c.getTipo()); 
+        dto.setDatInizio(c.getDataInizio()); 
+        dto.setDatFine(c.getDataFine()); 
         if (c.getDipendenti() != null) { 
             dto.setDipRIF(c.getDipendenti().getId()); 
         } 
         return dto; 
+        } catch (Exception e) {
+            throw new RuntimeException("Errore durante la creazione del DTO", e);
+        }
     }
     /*  Metodo: riceve l'id di un dipentente e un nuovo contratto,cerca il dipendente nel DB
         se non trova da errore,se lo trova collega il contratto al dipendente e lo salva nel DB

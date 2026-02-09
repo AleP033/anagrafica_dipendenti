@@ -1,13 +1,13 @@
 package com.example.anagrafica_dipendenti.Dto;
 
-
+import java.time.LocalDate;
 
 public class TimesheetDTO {
 
     private Long id;
-    private String oreLav;
-    private String dat;
-    private String tip;
+    private String oreLavorate;
+    private LocalDate dat;
+    private String tipologia;
     
     private Long dipRIF;
     private Long comRIF;
@@ -19,23 +19,23 @@ public class TimesheetDTO {
     public void setId(Long id) {
         this.id = id;
     }
-    public String getOreLav() {
-        return oreLav;
+    public String getOreLavorate() {
+        return oreLavorate;
     }
-    public void setOreLav(String oreLav) {
-        this.oreLav = oreLav;
+    public void setOreLavorate(String oreLavorate) {
+        this.oreLavorate = oreLavorate;
     }
-    public String getDat() {
+    public LocalDate getDat() {
         return dat;
     }
-    public void setDat(String dat) {
+    public void setDat(LocalDate dat) {
         this.dat = dat;
     }
-    public String getTip() {
-        return tip;
+    public String getTipologia() {
+        return tipologia;
     }
-    public void setTip(String tip) {
-        this.tip = tip;
+    public void setTipologia(String tipologia) {
+        this.tipologia = tipologia;
     }
     public Long getDipRIF() {
         return dipRIF;

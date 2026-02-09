@@ -29,13 +29,19 @@ public class TimesheetService {
 
      // Crezione nuovo timesheet trasformo l'entità nel dto
     public TimesheetDTO create (TimesheetDTO t) {
+        try {
+      
         Timesheet timesheet = new Timesheet();
-        timesheet.setOreLavorate(t.getOreLav());
+        timesheet.setOreLavorate(t.getOreLavorate());
         timesheet.setData(t.getDat());
-        timesheet.setTipologia(t.getTip());
+        timesheet.setTipologia(t.getTipologia());
         
         Timesheet saved = timesheetRepository.save(timesheet);
         return toDTO(saved);
+              
+        } catch (Exception e) {
+            throw new RuntimeException("Errore nell'inserimento del timesheet");
+        }
     }
 
  //GET tutti
@@ -56,6 +62,7 @@ public class TimesheetService {
 
  // Associo un timesheet al dipendente 
  public TimesheetDTO addDipendente(Long dipendenteId, Long timesheetId) { 
+    try {
     Timesheet t = timesheetRepository.findById(timesheetId) 
     .orElseThrow(() -> new RuntimeException("Timesheet non trovato")); 
     Dipendente d = dipendenteRepository.findById(dipendenteId) 
@@ -64,10 +71,16 @@ public class TimesheetService {
     t.setDipendente(d); 
     Timesheet saved = timesheetRepository.save(t); 
     return toDTO(saved); 
+    } catch (Exception e) {
+        throw new RuntimeException("Errore durante l'associazione del dipendente al timesheet");
+    }
 }
 
  //Associo un timesheet alla commessa
  public TimesheetDTO addCommessa(Long commessaId, Long timesheetId) {
+    try {
+        
+    
     Timesheet t = timesheetRepository.findById(timesheetId)
     .orElseThrow(()-> new RuntimeException("Timesheet non trovato"));
     Commessa c = commessaRepository.findById(commessaId)
@@ -77,17 +90,20 @@ public class TimesheetService {
     Timesheet saved = timesheetRepository.save(t);
 
     return toDTO(saved);
+    } catch (Exception e) {
+        throw new RuntimeException("Errore durante l'associazione della commessa al timesheet");
+    }
  }
 
   // Passo dall'entity al DTO
     private TimesheetDTO toDTO(Timesheet t) {
-
+        try {
         TimesheetDTO dto = new TimesheetDTO();
 
         dto.setId(t.getId());
-        dto.setOreLav(t.getOreLavorate());
+        dto.setOreLavorate(t.getOreLavorate());
         dto.setDat(t.getData());
-        dto.setTip(t.getTipologia());
+        dto.setTipologia(t.getTipologia());
         if (t.getDipendente() != null) { 
             dto.setDipRIF(t.getDipendente().getId()); 
         } 
@@ -96,6 +112,10 @@ public class TimesheetService {
         } 
 
         return dto;
+             
+        } catch (Exception e) {
+            throw new RuntimeException("Errore durante la creazione del DTO");
+        }
 
 }
 }

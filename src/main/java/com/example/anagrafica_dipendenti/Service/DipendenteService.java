@@ -1,6 +1,7 @@
 package com.example.anagrafica_dipendenti.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -9,7 +10,6 @@ import com.example.anagrafica_dipendenti.Model.Dipendente;
 import com.example.anagrafica_dipendenti.Model.Responsabile;
 import com.example.anagrafica_dipendenti.Repository.DipendenteRepository;
 import com.example.anagrafica_dipendenti.Repository.ResponsabileRepository;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 
@@ -17,8 +17,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class DipendenteService {
     
     private final DipendenteRepository dipendenteRepository;
-@Autowired
-private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
+
 @Autowired
 private ResponsabileRepository responsabileRepository; 
 
@@ -27,27 +27,31 @@ private ResponsabileRepository responsabileRepository;
 
     
     //Dependency injection via costruttore:
-    public DipendenteService(DipendenteRepository dipendenteRepository) {
+    public DipendenteService(DipendenteRepository dipendenteRepository, PasswordEncoder passwordEncoder) {
         this.dipendenteRepository = dipendenteRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     //CREATE
    public DipendenteDTO insert(DipendenteDTO dto) {
-
+    try {
     Dipendente d = new Dipendente();
-    d.setNome(dto.getNom());
-    d.setCognome(dto.getCog());
+    d.setNome(dto.getNome());
+    d.setCognome(dto.getCognome());
     d.setEmail(dto.getEmail());
     d.setPassword(passwordEncoder.encode(dto.getPassword()));
-    
 
+    
     Dipendente saved = dipendenteRepository.save(d);
 
     return toDTO(saved);
+     } catch (Exception e) {
+        throw new RuntimeException("Errore nell'inserimento del dipendente");
+    }
 }
 
 public DipendenteDTO addResponsabile(Long dipendenteId, Long responsabileId) {
-
+try {
     Dipendente d = dipendenteRepository.findById(dipendenteId)
         .orElseThrow(() -> new RuntimeException("Dipendente non trovato"));
 
@@ -59,6 +63,9 @@ public DipendenteDTO addResponsabile(Long dipendenteId, Long responsabileId) {
     dipendenteRepository.save(d);
 
     return toDTO(d);
+    } catch (Exception e) {
+    throw new RuntimeException("Errore durante l'associazione del responsabile al dipendente");
+}
 }
 
 
@@ -85,24 +92,14 @@ public DipendenteDTO addResponsabile(Long dipendenteId, Long responsabileId) {
     return toDTO(d); 
 }
 
-   public DipendenteDTO login(String email, String password){ 
-    Dipendente d = dipendenteRepository.findByEmail(email)
-    .orElseThrow(() -> new RuntimeException("Email non trovata")); 
-    
-    if (!passwordEncoder.matches(password, d.getPassword())) { 
-        throw new RuntimeException("Password errata"); } 
-        
-        return toDTO(d); 
-    }
-
-    // Passo dall'entity al DTO
+     // Passo dall'entity al DTO
     private DipendenteDTO toDTO(Dipendente d) {
-
+        try {
         DipendenteDTO dto = new DipendenteDTO();
 
         dto.setId(d.getId());
-        dto.setNom(d.getNome());
-        dto.setCog(d.getCognome());
+        dto.setNome(d.getNome());
+        dto.setCognome(d.getCognome());
         dto.setEmail(d.getEmail());
         dto.setPassword(d.getPassword());
 
@@ -132,6 +129,9 @@ public DipendenteDTO addResponsabile(Long dipendenteId, Long responsabileId) {
         );
 
         return dto;
+         } catch (Exception e) {
+            throw new RuntimeException("Errore durante la creazione del DTO");
+        }
     }
 }
 

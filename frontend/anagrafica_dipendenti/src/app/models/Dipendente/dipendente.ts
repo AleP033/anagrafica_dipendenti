@@ -1,8 +1,8 @@
 export class Dipendente {
 
     id?: number;
-    nom?: string;
-    cog?: string;
+    nome?: string;
+    cognome?: string;
     email?: string;
     password? : string;
 

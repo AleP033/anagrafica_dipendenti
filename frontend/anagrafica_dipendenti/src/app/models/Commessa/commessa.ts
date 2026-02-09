@@ -5,11 +5,11 @@ import { Timesheet } from "../Timesheet/timesheet";
 export class Commessa {
 
     id? : number;
-    tit? : string;
-    des? : string;
-    datIni? : string;
-    datFin? : string;
-    imp? : number;
+    titolo? : string;
+    descrizione? : string;
+    datInizio? : string;
+    datFine? : string;
+    importo? : number;
 
     dipRIF? : number[];
     respRIF? : number;

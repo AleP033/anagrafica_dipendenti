@@ -1,11 +1,13 @@
 package com.example.anagrafica_dipendenti.Dto;
 
+import java.time.LocalDate;
+
 public class ContrattoDTO {
 
      private Long id;
-    private String tip;
-    private String datIni;
-    private String datFin;
+    private String tipo;
+    private LocalDate datInizio;
+    private LocalDate datFine;
 
     private Long dipRIF;
 
@@ -17,28 +19,28 @@ public class ContrattoDTO {
         this.id = id;
     }
 
-    public String getTip() {
-        return tip;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setTip(String tip) {
-        this.tip = tip;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
-    public String getDatIni() {
-        return datIni;
+    public LocalDate getDatInizio() {
+        return datInizio;
     }
 
-    public void setDatIni(String datIni) {
-        this.datIni = datIni;
+    public void setDatInizio(LocalDate datInizio) {
+        this.datInizio = datInizio;
     }
 
-    public String getDatFin() {
-        return datFin;
+    public LocalDate getDatFine() {
+        return datFine;
     }
 
-    public void setDatFin(String datFin) {
-        this.datFin = datFin;
+    public void setDatFine(LocalDate datFine) {
+        this.datFine = datFine;
     }
 
     public Long getDipRIF() {

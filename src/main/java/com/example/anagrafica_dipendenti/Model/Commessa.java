@@ -1,5 +1,6 @@
 package com.example.anagrafica_dipendenti.Model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -24,9 +25,9 @@ public class Commessa {
     private Long id;
     private String titolo;
     private String descrizione;
-    private String dataInizio;
-    private String dataFine;
-    private Float importo;
+    private LocalDate dataInizio;
+    private LocalDate dataFine;
+    private Double importo;
 
     @ManyToMany(mappedBy = "commesse")
     @JsonIgnore
@@ -65,27 +66,27 @@ public class Commessa {
         this.descrizione = descrizione;
     }
 
-    public String getDataInizio() {
+    public LocalDate getDataInizio() {
         return dataInizio;
     }
 
-    public void setDataInizio(String dataInizio) {
+    public void setDataInizio(LocalDate dataInizio) {
         this.dataInizio = dataInizio;
     }
 
-    public String getDataFine() {
+    public LocalDate getDataFine() {
         return dataFine;
     }
 
-    public void setDataFine(String dataFine) {
+    public void setDataFine(LocalDate dataFine) {
         this.dataFine = dataFine;
     }
 
-    public Float getImporto() {
+    public Double getImporto() {
         return importo;
     }
 
-    public void setImporto(Float importo) {
+    public void setImporto(Double importo) {
         this.importo = importo;
     }
 

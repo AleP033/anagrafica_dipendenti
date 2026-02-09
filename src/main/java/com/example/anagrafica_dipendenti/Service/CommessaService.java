@@ -31,18 +31,22 @@ public class CommessaService {
 
     //POST
      public CommessaDTO insert(CommessaDTO dto) {
-
+    try {
     Commessa c = new Commessa();
-    c.setTitolo(dto.getTit());
-    c.setDescrizione(dto.getDes());
-    c.setDataInizio(dto.getDatIni());
-    c.setDataFine(dto.getDatFin());
-    c.setImporto(dto.getImp());
+    c.setTitolo(dto.getTitolo());
+    c.setDescrizione(dto.getDescrizione());
+    c.setDataInizio(dto.getDatInizio());
+    c.setDataFine(dto.getDatFine());
+    c.setImporto(dto.getImporto());
     
 
     Commessa saved = commessaRepository.save(c);
 
     return toDTO(saved);
+
+    } catch (Exception e) {
+        throw new RuntimeException("Errore durante l'inserimento della commessa", e);
+    }
 }
 
     //GET tutti
@@ -63,7 +67,7 @@ public class CommessaService {
 
     //Associo un dipendente ad una commessa
     public Commessa addDipendente(Long dipendenteId, Long commessaId) {
-
+        try {
         Commessa c = commessaRepository.findById(commessaId)
         .orElseThrow(() -> new RuntimeException("Commessa non trovata"));
 
@@ -75,11 +79,16 @@ public class CommessaService {
 
         dipendenteRepository.save(d);
 
-        return c;
+        return commessaRepository.save(c);
+             
+        } catch (Exception e) {
+            throw new RuntimeException("Errore durante l'associazione del dipendente alla commessa", e);
+        }
     }
 
     //Associo un responsabile ad una commessa
     public Commessa addResponsabile(Long responsabileId, Long commessaId){
+        try {
         Commessa c = commessaRepository.findById(commessaId).
         orElseThrow(() -> new RuntimeException("Commessa non trovata"));
 
@@ -88,6 +97,9 @@ public class CommessaService {
 
         c.setResponsabile(r);
         return commessaRepository.save(c);
+         } catch (Exception e) {
+            throw new RuntimeException("Errore durante l'associazione del responsabile alla commessa", e);
+        }
     }
 
     // converto da entity a DTO perchè non funzionava il find
@@ -108,15 +120,15 @@ public class CommessaService {
 
     // Passo dall'entity al DTO
     private CommessaDTO toDTO(Commessa c) {
-
+    try {
         CommessaDTO dto = new CommessaDTO();
 
         dto.setId(c.getId());
-        dto.setTit(c.getTitolo());
-        dto.setDes(c.getDescrizione());
-        dto.setDatIni(c.getDataInizio());
-        dto.setDatFin(c.getDataFine());
-        dto.setImp(c.getImporto());
+        dto.setTitolo(c.getTitolo());
+        dto.setDescrizione(c.getDescrizione());
+        dto.setDatInizio(c.getDataInizio());
+        dto.setDatFine(c.getDataFine());
+        dto.setImporto(c.getImporto());
        
         if (c.getResponsabile() != null) { 
             dto.setRespRIF(c.getResponsabile().getId()); 
@@ -136,6 +148,9 @@ public class CommessaService {
         );
 
         return dto;
+        } catch (Exception e) {
+            throw new RuntimeException("Errore durante la creazione del DTO", e);
+    }
     }
 
 }

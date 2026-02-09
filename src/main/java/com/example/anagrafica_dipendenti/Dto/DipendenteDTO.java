@@ -5,8 +5,8 @@ import java.util.List;
 public class DipendenteDTO {
 
   private Long id;
-  private String nom;
-  private String cog;
+  private String nome;
+  private String cognome;
   private String email;
   private String password;
 
@@ -22,17 +22,17 @@ public class DipendenteDTO {
   public void setId(Long id) {
     this.id = id;
   }
-  public String getNom() {
-    return nom;
+  public String getNome() {
+    return nome;
   }
-  public void setNom(String nom) {
-    this.nom = nom;
+  public void setNome(String nome) {
+    this.nome = nome;
   }
-  public String getCog() {
-    return cog;
+  public String getCognome() {
+    return cognome;
   }
-  public void setCog(String cog) {
-    this.cog = cog;
+  public void setCognome(String cognome) {
+    this.cognome = cognome;
   }
   public String getEmail() {
     return email;

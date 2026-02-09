@@ -1,5 +1,6 @@
 package com.example.anagrafica_dipendenti.Model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -22,8 +23,8 @@ public class Responsabile {
     private String nome;
     private String cognome;
     private String email;
-    private String dataInizio;
-    private String dataFine;
+    private LocalDate dataInizio;
+    private LocalDate dataFine;
 
    
     @ManyToMany(mappedBy= "responsabili")
@@ -59,16 +60,16 @@ public class Responsabile {
   public void setEmail(String Email){
     this.email=Email;
   }
-  public String getData_inizio(){
+  public LocalDate getData_inizio(){
     return dataInizio;
   }
-  public void setData_inizio(String Data_inizio){
+  public void setData_inizio(LocalDate Data_inizio){
     this.dataInizio = Data_inizio;
   }
-  public String getData_fine(){
+  public LocalDate getData_fine(){
     return dataFine;
   }
-  public void setData_fine(String Data_fine){
+  public void setData_fine(LocalDate Data_fine){
     this.dataFine = Data_fine;
   }
  public Set<Dipendente> getDipendenti(){
@@ -77,16 +78,16 @@ public class Responsabile {
   public void setDipendenti(Set<Dipendente> dipendenti){
     this.dipendenti = dipendenti;
 }
-  public String getDataInizio() {
+  public LocalDate getDataInizio() {
     return dataInizio;
   }
-  public void setDataInizio(String dataInizio) {
+  public void setDataInizio(LocalDate dataInizio) {
     this.dataInizio = dataInizio;
   }
-  public String getDataFine() {
+  public LocalDate getDataFine() {
     return dataFine;
   }
-  public void setDataFine(String dataFine) {
+  public void setDataFine(LocalDate dataFine) {
     this.dataFine = dataFine;
   }
   public List<Commessa> getCommesse() {

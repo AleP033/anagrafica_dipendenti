@@ -1,5 +1,6 @@
 package com.example.anagrafica_dipendenti.Dto;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -7,11 +8,11 @@ import java.util.List;
 public class CommessaDTO {
 
     private Long id;
-    private String tit;
-    private String des;
-    private String datIni;
-    private String datFin;
-    private Float imp;
+    private String titolo;
+    private String descrizione;
+    private LocalDate datInizio;
+    private LocalDate datFine;
+    private Double importo;
 
     private List<Long> dipRIF;
     private Long respRIF;
@@ -24,35 +25,36 @@ public class CommessaDTO {
     public void setId(Long id) {
         this.id = id;
     }
-    public String getTit() {
-        return tit;
+    public String getTitolo() {
+        return titolo;
     }
-    public void setTit(String tit) {
-        this.tit = tit;
+    public void setTitolo(String titolo) {
+        this.titolo = titolo;
     }
-    public String getDes() {
-        return des;
+    public String getDescrizione() {
+        return descrizione;
     }
-    public void setDes(String des) {
-        this.des = des;
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
     }
-    public String getDatIni() {
-        return datIni;
+    public LocalDate getDatInizio() {
+        return datInizio;
     }
-    public void setDatIni(String datIni) {
-        this.datIni = datIni;
+    public void setDatInizio(LocalDate datInizio) {
+        this.datInizio = datInizio;
     }
-    public String getDatFin() {
-        return datFin;
+    public LocalDate getDatFine() {
+        return datFine;
     }
-    public void setDatFin(String datFin) {
-        this.datFin = datFin;
+    public void setDatFine(LocalDate datFine) {
+        this.datFine = datFine;
     }
-    public Float getImp() {
-        return imp;
+    public Double getImporto() {
+        return importo;
     }
-    public void setImp(Float imp) {
-        this.imp = imp;
+    public void setImporto(Double importo) {
+        this.importo = importo
+        ;
     }
     public List<Long> getDipRIF() {
         return dipRIF;

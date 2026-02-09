@@ -27,15 +27,19 @@ public class ResponsabileService {
     }
     // Crezione nuovo responsabile trasformo l'entità nel dto
     public ResponsabileDTO create (ResponsabileDTO r) {
+        try {
         Responsabile responsabile = new Responsabile();
-        responsabile.setNome(r.getNom());
-        responsabile.setCognome(r.getCog());
+        responsabile.setNome(r.getNome());
+        responsabile.setCognome(r.getCognome());
         responsabile.setEmail(r.getEmail());
-        responsabile.setData_inizio(r.getDatIni());
-        responsabile.setData_fine(r.getDatFin());
+        responsabile.setData_inizio(r.getDatInizio());
+        responsabile.setData_fine(r.getDatFine());
         
         Responsabile saved = responsabileRepository.save(responsabile);
         return toDTO(saved);
+        } catch (Exception e) {
+            throw new RuntimeException("Errore nell'inserimento del responsabile");
+        }
     }
     // Trovo tutti i responsabili
        public List<ResponsabileDTO> getAll() {
@@ -54,6 +58,7 @@ public class ResponsabileService {
 }
     // Associo un dipendente ad un responsabile
     public void addDipendente(Long responsabileId, Long dipendenteId) {
+        try {
         Responsabile r = responsabileRepository.findById(responsabileId)
         .orElseThrow(()-> new RuntimeException("Responsabile non trovato"));
         Dipendente d = dipendenteRepository.findById(dipendenteId)
@@ -61,19 +66,24 @@ public class ResponsabileService {
 
         r.getDipendenti().add(d); // aggiunge il dipendente alla lista del responsabile
         responsabileRepository.save(r); // salva
+        } catch (Exception e) {
+            throw new RuntimeException("Errore durante l'associazione del dipendente al responsabile");
+        }
     }
 
     // Passo dall'entity al DTO
     private ResponsabileDTO toDTO(Responsabile r) {
+        try {
+  
 
         ResponsabileDTO dto = new ResponsabileDTO();
 
         dto.setId(r.getId());
-        dto.setNom(r.getNome());
-        dto.setCog(r.getCognome());
+        dto.setNome(r.getNome());
+        dto.setCognome(r.getCognome());
         dto.setEmail(r.getEmail());
-        dto.setDatIni(r.getData_inizio());
-        dto.setDatFin(r.getData_fine());
+        dto.setDatInizio(r.getDataInizio());
+        dto.setDatFine(r.getDataFine());
 
         // LISTE DI ID
         dto.setDipRIF(
@@ -90,6 +100,10 @@ public class ResponsabileService {
 
 
         return dto;
+                  
+        } catch (Exception e) {
+            throw new RuntimeException("Errore durante la creazione del DTO ");
+        }
     }
     
 }

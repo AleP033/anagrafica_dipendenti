@@ -1,5 +1,7 @@
 package com.example.anagrafica_dipendenti.Model;
 
+import java.time.LocalDate;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -15,7 +17,7 @@ public class Timesheet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String oreLavorate;
-    private String data;
+    private LocalDate data;
     private String tipologia;
 
     @ManyToOne
@@ -45,11 +47,11 @@ public class Timesheet {
         this.oreLavorate = oreLavorate;
     }
 
-    public String getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 
